@@ -50,6 +50,7 @@ EOF
 resource "null_resource" "build_docker_image" {
   triggers = {
      src_hash = file("${path.module}/docker/files/jenkins.yaml.tpl")
+     always_run = timestamp()
   }
   depends_on = [null_resource.render_template]
   provisioner "local-exec" {
